@@ -1,5 +1,5 @@
 # jstring
-[![Build Status](https://travis-ci.org/imatveev/jstring.svg?branch=master)](https://travis-ci.org/imatveev/jstring)
+[![Build Status](https://travis-ci.org/imatveev/jstring.svg?branch=master)](https://travis-ci.org/imatveev/jstring)<br />
 A Node.js library, designed to simplify work with string validation and sanitization.
 ## Installation
     npm install jstring
