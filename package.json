@@ -1,0 +1,21 @@
+{
+  "name": "jstring",
+  "version": "1.0.0",
+  "description": "A Node.js library, designed to simplify work with string validation and sanitization.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imatveev/jstring.git"
+  },
+  "keywords": [
+    "validation",
+    "sanitization",
+    "string",
+    "htmlspecialchars"
+  ],
+  "author": "Ivan Matvieiev",
+  "license": "MIT"
+}
