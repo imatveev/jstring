@@ -37,16 +37,153 @@ A Node.js library, designed to simplify work with string validation and sanitiza
 <p>You need deal with string validation or sanitization in your Node.js project.</p>
 
 <h2>
-<a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h2>
+<a id="installation-1" class="anchor" href="#installation-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <pre><code>var jstring = require('jstring');
 </code></pre>
 
 <h2>
-<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<h2>
-<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+<h3>
+<a id="handlestringstring-task" class="anchor" href="#handlestringstring-task" aria-hidden="true"><span class="octicon octicon-link"></span></a>handleString(string, task)</h3>
+
+<p>Main sanitization method, that takes string and task object, and return string after processing. 
+(All jstring methods have public access, and You can use them direct. This method is developed for convenience).</p>
+
+<h4>
+<a id="string" class="anchor" href="#string" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="task" class="anchor" href="#task" aria-hidden="true"><span class="octicon octicon-link"></span></a>task</h4>
+
+<p>A object, that contains necessary functions and their parameters.
+    {function: [param],
+     function: [param]}
+Can be used with:
+    removeTags;
+    cut;</p>
+
+<h4>
+<a id="return" class="anchor" href="#return" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>String processed.</p>
+
+<h4>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.handleString('Foo &lt;Bar&gt;Buzz', {cut: 6, removeTags:null});
+//returns: Foo Bu
+</code></pre>
+
+<h3>
+<a id="removetagsstring-except" class="anchor" href="#removetagsstring-except" aria-hidden="true"><span class="octicon octicon-link"></span></a>removeTags(string[, except])</h3>
+
+<p>Removes all &lt;<em>&gt; and &amp;lt;</em>&amp;gt; elements of the string. </p>
+
+<h4>
+<a id="string-1" class="anchor" href="#string-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="except" class="anchor" href="#except" aria-hidden="true"><span class="octicon octicon-link"></span></a>except</h4>
+
+<p>A string, or array, that contains exclusion tag names. 
+(Notice that closing tags is added automatically. For example if you pass 'div' as except - tag &lt;/div&gt; will not be deleted.)</p>
+
+<h4>
+<a id="return-1" class="anchor" href="#return-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>String processed.</p>
+
+<h4>
+<a id="example-1" class="anchor" href="#example-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.removeTags('Foo &lt;Bar&gt;&lt;Buzz&gt;');
+//returns: Foo 
+jstring.removeTags('Foo &lt;Bar&gt;&lt;Buzz&gt;', Bar);
+//returns: Foo &lt;Bar&gt;
+jstring.removeTags('Foo &amp;lt;Bar&amp;gt;&lt;Buzz&gt;', Bar);
+//returns: Foo 
+</code></pre>
+
+<h3>
+<a id="cutstring-length" class="anchor" href="#cutstring-length" aria-hidden="true"><span class="octicon octicon-link"></span></a>cut(string, length)</h3>
+
+<p>Cuts the string from start to <strong>length</strong>. </p>
+
+<h4>
+<a id="string-2" class="anchor" href="#string-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="length" class="anchor" href="#length" aria-hidden="true"><span class="octicon octicon-link"></span></a>length</h4>
+
+<p>The length by which the source string will be cut including.</p>
+
+<h4>
+<a id="return-2" class="anchor" href="#return-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>String processed.</p>
+
+<h4>
+<a id="example-2" class="anchor" href="#example-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.cut('Foo &lt;Bar&gt;&lt;Buzz&gt;', 9);
+//returns: Foo &lt;Bar&gt;
+</code></pre>
+
+<h3>
+<a id="isalphastring" class="anchor" href="#isalphastring" aria-hidden="true"><span class="octicon octicon-link"></span></a>isAlpha(string)</h3>
+
+<p>Checks if the source string contains only letters. </p>
+
+<h4>
+<a id="string-3" class="anchor" href="#string-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="return-3" class="anchor" href="#return-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>Boolean is the source string contains only letters.</p>
+
+<h4>
+<a id="example-3" class="anchor" href="#example-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.isAlpha('Foo &lt;Bar&gt;&lt;Buzz&gt;');
+//returns: false
+jstring.isAlpha('Foo BarBuzz');
+//returns: true
+</code></pre>
+
+<h3>
+<a id="isalphanumericstring" class="anchor" href="#isalphanumericstring" aria-hidden="true"><span class="octicon octicon-link"></span></a>isAlphanumeric(string)</h3>
+
+<p>Checks if the source string contains only letters and numbers.</p>
+
+<h4>
+<a id="string-4" class="anchor" href="#string-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="return-4" class="anchor" href="#return-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>Boolean is the source string contains only letters and numbers.</p>
+
+<h4>
+<a id="example-4" class="anchor" href="#example-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.isAlphanumeric('Foo &lt;Bar&gt;&lt;Buzz&gt; 67');
+//returns: false
+jstring.isAlphanumeric('Foo BarBuzz 67');
+//returns: true
+</code></pre>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/imatveev/jstring">Jstring</a> is maintained by <a href="https://github.com/imatveev">imatveev</a>.</span>
