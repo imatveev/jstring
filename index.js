@@ -32,5 +32,11 @@ function JString() {
         }
         return false;
     };
+    this.isAlpha = function (string) {
+        return /^[a-zA-Z]*$/.test(string);
+    };
+    this.isAlphanumeric = function (string) {
+        return /^[a-zA-Z0-9]+$/.test(string);
+    };
 }
 module.exports = new JString();
