@@ -56,6 +56,26 @@ String processed.
     jstring.cut('Foo <Bar><Buzz>', 9);
     //returns: Foo <Bar>
 
+### toLow(string)
+Just a wrapper over *toLowerCase* method, to allow use it in **handleString** method. 
+#### string
+Source string.
+#### return
+String processed.
+#### Example
+    jstring.toLow('Foo Bar');
+    //returns: foo bar
+
+### toUp(string)
+Just a wrapper over *toUpperCase* method, to allow use it in **handleString** method. 
+#### string
+Source string.
+#### return
+String processed.
+#### Example
+    jstring.toUp('Foo Bar');
+    //returns: FOO BAR
+
 ### isAlpha(string)
 Checks if the source string contains only letters. 
 #### string

@@ -32,6 +32,12 @@ function JString() {
         }
         return false;
     };
+    this.toLow = function (string) {
+        return string.toLowerCase();
+    };
+    this.toUp = function (string) {
+        return string.toUpperCase();
+    };
     this.isAlpha = function (string) {
         return /^[a-zA-Z]*$/.test(string);
     };
