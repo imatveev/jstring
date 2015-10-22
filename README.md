@@ -99,6 +99,18 @@ Boolean is the source string contains only letters and numbers.
     //returns: false
     jstring.isAlphanumeric('Foo BarBuzz 67');
     //returns: true
+    
+### isEmail(string)
+Checks if the source string is a valid email.
+#### string
+Source string.
+#### return
+Boolean is the source string is a valid email.
+#### Example
+    jstring.isEmail('test@method.io');
+    //returns: true
+    jstring.isEmail('Foo Bar');
+    //returns: false
         
 
       
