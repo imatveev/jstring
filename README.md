@@ -7,6 +7,7 @@ A Node.js library, designed to simplify work with string validation and sanitiza
 You need deal with string validation or sanitization in your Node.js project.
 ## Installation
     var jstring = require('jstring');
+    
 ## Usage
 
 ### handleString(string, task)
@@ -24,8 +25,11 @@ Can be used with:
 #### return
 String processed.
 #### Example
-    jstring.handleString('Foo <Bar>Buzz', {cut: 6, removeTags:null});
-    //returns: Foo Bu
+    jstring.handleString('Foo <Bar>Buzz', { cut: 6, 
+                                            removeTags:null, 
+                                            replace: ['Fo', 'FO', true]
+                                          });
+    //return: FOo Bu
     
 ### removeTags(string[, except])
 Removes all <*> and \&lt;*\&gt; elements of the string. 
@@ -38,11 +42,11 @@ A string, or array, that contains exclusion tag names.
 String processed.
 #### Example
     jstring.removeTags('Foo <Bar><Buzz>');
-    //returns: Foo 
+    //return: Foo 
     jstring.removeTags('Foo <Bar><Buzz>', Bar);
-    //returns: Foo <Bar>
+    //return: Foo <Bar>
     jstring.removeTags('Foo &lt;Bar&gt;<Buzz>', Bar);
-    //returns: Foo 
+    //return: Foo 
     
 ### cut(string, length)
 Cuts the string from start to **length**. 
@@ -54,7 +58,7 @@ The length by which the source string will be cut including.
 String processed.
 #### Example
     jstring.cut('Foo <Bar><Buzz>', 9);
-    //returns: Foo <Bar>
+    //return: Foo <Bar>
 
 ### toLow(string)
 Just a wrapper over *toLowerCase* method, to allow use it in **handleString** method. 
@@ -64,7 +68,7 @@ Source string.
 String processed.
 #### Example
     jstring.toLow('Foo Bar');
-    //returns: foo bar
+    //return: foo bar
 
 ### toUp(string)
 Just a wrapper over *toUpperCase* method, to allow use it in **handleString** method. 
@@ -74,8 +78,64 @@ Source string.
 String processed.
 #### Example
     jstring.toUp('Foo Bar');
-    //returns: FOO BAR
+    //return: FOO BAR
 
+### capitalize(string)
+Makes first character of the string capitalized. 
+#### string
+Source string.
+#### return
+String processed.
+#### Example
+    jstring.capitalize('foo Bar');
+    //return: Foo Bar
+    
+### minifyWhitespace(string)
+Removes extra whitespace. 
+#### string
+Source string.
+#### return
+String processed.
+#### Example
+    jstring.minifyWhitespace('Foo   Bar  Buzz');
+    //return: Foo Bar Buzz
+
+### replace(string, [searchString, replaceString[, caseStrict]])
+Replaces substring in main string on new string.
+#### string
+Source string.
+#### searchString
+String, that need to be replaced with **replaceString**.
+#### replaceString
+String, that need to be placed instead **searchString**.
+#### caseStrict
+Boolean if replacement should be done strict by case sensitivity (true if case of searchString is matters).
+#### return
+String processed.
+#### Example
+    jstring.replace('Foo Bar foo', ['foo', 'buzz']);
+    //return: buzz Bar foo
+    jstring.replace('Foo Bar foo', ['foo', 'buzz', true]);
+    //return: Foo Bar buzz
+
+### replaceAll(string, [searchString, replaceString[, caseStrict]])
+Replaces all occurrences of substring in main string on new string.
+#### string
+Source string.
+#### searchString
+Strings, that need to be replaced with **replaceString**.
+#### replaceString
+String, that need to be placed instead **searchString**.
+#### caseStrict
+Boolean if replacement should be done strict by case sensitivity (true if case of searchString is matters).
+#### return
+String processed.
+#### Example
+    jstring.replace('Foo Bar foo', ['foo', 'buzz']);
+    //return: buzz Bar buzz
+    jstring.replace('Foo Bar foo', ['foo', 'buzz', true]);
+    //return: Foo Bar buzz
+    
 ### isAlpha(string)
 Checks if the source string contains only letters. 
 #### string
@@ -84,9 +144,9 @@ Source string.
 Boolean is the source string contains only letters.
 #### Example
     jstring.isAlpha('Foo <Bar><Buzz>');
-    //returns: false
+    //return: false
     jstring.isAlpha('Foo BarBuzz');
-    //returns: true
+    //return: true
         
 ### isAlphanumeric(string)
 Checks if the source string contains only letters and numbers.
@@ -96,9 +156,9 @@ Source string.
 Boolean is the source string contains only letters and numbers.
 #### Example
     jstring.isAlphanumeric('Foo <Bar><Buzz> 67');
-    //returns: false
+    //return: false
     jstring.isAlphanumeric('Foo BarBuzz 67');
-    //returns: true
+    //return: true
     
 ### isEmail(string)
 Checks if the source string is a valid email.
@@ -108,9 +168,41 @@ Source string.
 Boolean is the source string is a valid email.
 #### Example
     jstring.isEmail('test@method.io');
-    //returns: true
+    //return: true
     jstring.isEmail('Foo Bar');
-    //returns: false
+    //return: false
+
+### isUpper(string, strict)
+Checks if the source string is uppercase.
+#### string
+Source string.
+#### strict
+Set to true if test should be strict (return true only if all chars of string is uppercase).
+#### return
+Boolean is the source string is uppercase.
+#### Example
+    jstring.isUpper('Foo Bar');
+    //return: true
+    jstring.isUpper('foo bar');
+    //return: false
+    jstring.isUpper('Foo Bar', true);
+    //return: false
+    
+### isLower(string, strict)
+Checks if the source string is lowercase.
+#### string
+Source string.
+#### strict
+Set to true if test should be strict (return true only if all chars of string is lowercase).
+#### return
+Boolean is the source string is lowercase.
+#### Example
+    jstring.isLower('Foo Bar');
+    //return: true
+    jstring.isLower('FOO BAR');
+    //return: false
+    jstring.isLower('Foo Bar', true);
+    //return: false    
         
 
       
