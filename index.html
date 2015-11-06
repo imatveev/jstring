@@ -74,8 +74,11 @@ Can be used with:
 <h4>
 <a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
 
-<pre><code>jstring.handleString('Foo &lt;Bar&gt;Buzz', {cut: 6, removeTags:null});
-//returns: Foo Bu
+<pre><code>jstring.handleString('Foo &lt;Bar&gt;Buzz', { cut: 6, 
+                                        removeTags:null, 
+                                        replace: ['Fo', 'FO', true]
+                                      });
+//return: FOo Bu
 </code></pre>
 
 <h3>
@@ -103,11 +106,11 @@ Can be used with:
 <a id="example-1" class="anchor" href="#example-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
 
 <pre><code>jstring.removeTags('Foo &lt;Bar&gt;&lt;Buzz&gt;');
-//returns: Foo 
+//return: Foo 
 jstring.removeTags('Foo &lt;Bar&gt;&lt;Buzz&gt;', Bar);
-//returns: Foo &lt;Bar&gt;
+//return: Foo &lt;Bar&gt;
 jstring.removeTags('Foo &amp;lt;Bar&amp;gt;&lt;Buzz&gt;', Bar);
-//returns: Foo 
+//return: Foo 
 </code></pre>
 
 <h3>
@@ -134,13 +137,13 @@ jstring.removeTags('Foo &amp;lt;Bar&amp;gt;&lt;Buzz&gt;', Bar);
 <a id="example-2" class="anchor" href="#example-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
 
 <pre><code>jstring.cut('Foo &lt;Bar&gt;&lt;Buzz&gt;', 9);
-//returns: Foo &lt;Bar&gt;
+//return: Foo &lt;Bar&gt;
 </code></pre>
 
 <h3>
-<a id="isalphastring" class="anchor" href="#isalphastring" aria-hidden="true"><span class="octicon octicon-link"></span></a>isAlpha(string)</h3>
+<a id="tolowstring" class="anchor" href="#tolowstring" aria-hidden="true"><span class="octicon octicon-link"></span></a>toLow(string)</h3>
 
-<p>Checks if the source string contains only letters. </p>
+<p>Just a wrapper over <em>toLowerCase</em> method, to allow use it in <strong>handleString</strong> method. </p>
 
 <h4>
 <a id="string-3" class="anchor" href="#string-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
@@ -150,21 +153,19 @@ jstring.removeTags('Foo &amp;lt;Bar&amp;gt;&lt;Buzz&gt;', Bar);
 <h4>
 <a id="return-3" class="anchor" href="#return-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
 
-<p>Boolean is the source string contains only letters.</p>
+<p>String processed.</p>
 
 <h4>
 <a id="example-3" class="anchor" href="#example-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
 
-<pre><code>jstring.isAlpha('Foo &lt;Bar&gt;&lt;Buzz&gt;');
-//returns: false
-jstring.isAlpha('Foo BarBuzz');
-//returns: true
+<pre><code>jstring.toLow('Foo Bar');
+//return: foo bar
 </code></pre>
 
 <h3>
-<a id="isalphanumericstring" class="anchor" href="#isalphanumericstring" aria-hidden="true"><span class="octicon octicon-link"></span></a>isAlphanumeric(string)</h3>
+<a id="toupstring" class="anchor" href="#toupstring" aria-hidden="true"><span class="octicon octicon-link"></span></a>toUp(string)</h3>
 
-<p>Checks if the source string contains only letters and numbers.</p>
+<p>Just a wrapper over <em>toUpperCase</em> method, to allow use it in <strong>handleString</strong> method. </p>
 
 <h4>
 <a id="string-4" class="anchor" href="#string-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
@@ -174,15 +175,309 @@ jstring.isAlpha('Foo BarBuzz');
 <h4>
 <a id="return-4" class="anchor" href="#return-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
 
-<p>Boolean is the source string contains only letters and numbers.</p>
+<p>String processed.</p>
 
 <h4>
 <a id="example-4" class="anchor" href="#example-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
 
+<pre><code>jstring.toUp('Foo Bar');
+//return: FOO BAR
+</code></pre>
+
+<h3>
+<a id="capitalizestring" class="anchor" href="#capitalizestring" aria-hidden="true"><span class="octicon octicon-link"></span></a>capitalize(string)</h3>
+
+<p>Makes first character of the string capitalized. </p>
+
+<h4>
+<a id="string-5" class="anchor" href="#string-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="return-5" class="anchor" href="#return-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>String processed.</p>
+
+<h4>
+<a id="example-5" class="anchor" href="#example-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.capitalize('foo Bar');
+//return: Foo Bar
+</code></pre>
+
+<h3>
+<a id="minifywhitespacestring" class="anchor" href="#minifywhitespacestring" aria-hidden="true"><span class="octicon octicon-link"></span></a>minifyWhitespace(string)</h3>
+
+<p>Removes extra whitespace. </p>
+
+<h4>
+<a id="string-6" class="anchor" href="#string-6" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="return-6" class="anchor" href="#return-6" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>String processed.</p>
+
+<h4>
+<a id="example-6" class="anchor" href="#example-6" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.minifyWhitespace('Foo   Bar  Buzz');
+//return: Foo Bar Buzz
+</code></pre>
+
+<h3>
+<a id="replacestring-searchstring-replacestring-casestrict" class="anchor" href="#replacestring-searchstring-replacestring-casestrict" aria-hidden="true"><span class="octicon octicon-link"></span></a>replace(string, [searchString, replaceString[, caseStrict]])</h3>
+
+<p>Replaces substring in main string on new string.</p>
+
+<h4>
+<a id="string-7" class="anchor" href="#string-7" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="searchstring" class="anchor" href="#searchstring" aria-hidden="true"><span class="octicon octicon-link"></span></a>searchString</h4>
+
+<p>String, that need to be replaced with <strong>replaceString</strong>.</p>
+
+<h4>
+<a id="replacestring" class="anchor" href="#replacestring" aria-hidden="true"><span class="octicon octicon-link"></span></a>replaceString</h4>
+
+<p>String, that need to be placed instead <strong>searchString</strong>.</p>
+
+<h4>
+<a id="casestrict" class="anchor" href="#casestrict" aria-hidden="true"><span class="octicon octicon-link"></span></a>caseStrict</h4>
+
+<p>Boolean if replacement should be done strict by case sensitivity (true if case of searchString is matters).</p>
+
+<h4>
+<a id="return-7" class="anchor" href="#return-7" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>String processed.</p>
+
+<h4>
+<a id="example-7" class="anchor" href="#example-7" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.replace('Foo Bar foo', ['foo', 'buzz']);
+//return: buzz Bar foo
+jstring.replace('Foo Bar foo', ['foo', 'buzz', true]);
+//return: Foo Bar buzz
+</code></pre>
+
+<h3>
+<a id="replaceallstring-searchstring-replacestring-casestrict" class="anchor" href="#replaceallstring-searchstring-replacestring-casestrict" aria-hidden="true"><span class="octicon octicon-link"></span></a>replaceAll(string, [searchString, replaceString[, caseStrict]])</h3>
+
+<p>Replaces all occurrences of substring in main string on new string.</p>
+
+<h4>
+<a id="string-8" class="anchor" href="#string-8" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="searchstring-1" class="anchor" href="#searchstring-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>searchString</h4>
+
+<p>Strings, that need to be replaced with <strong>replaceString</strong>.</p>
+
+<h4>
+<a id="replacestring-1" class="anchor" href="#replacestring-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>replaceString</h4>
+
+<p>String, that need to be placed instead <strong>searchString</strong>.</p>
+
+<h4>
+<a id="casestrict-1" class="anchor" href="#casestrict-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>caseStrict</h4>
+
+<p>Boolean if replacement should be done strict by case sensitivity (true if case of searchString is matters).</p>
+
+<h4>
+<a id="return-8" class="anchor" href="#return-8" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>String processed.</p>
+
+<h4>
+<a id="example-8" class="anchor" href="#example-8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.replace('Foo Bar foo', ['foo', 'buzz']);
+//return: buzz Bar buzz
+jstring.replace('Foo Bar foo', ['foo', 'buzz', true]);
+//return: Foo Bar buzz
+</code></pre>
+
+<h3>
+<a id="foreachstring-callback" class="anchor" href="#foreachstring-callback" aria-hidden="true"><span class="octicon octicon-link"></span></a>forEach(string[, callback])</h3>
+
+<p>Iterate thru every char of incoming string and call the callback function to it.</p>
+
+<h4>
+<a id="string-9" class="anchor" href="#string-9" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="callbackvalue-index" class="anchor" href="#callbackvalue-index" aria-hidden="true"><span class="octicon octicon-link"></span></a>callback(value, index)</h4>
+
+<p>Callback function, that will be called to each char of <strong>string</strong>.</p>
+
+<h5>
+<a id="value" class="anchor" href="#value" aria-hidden="true"><span class="octicon octicon-link"></span></a>value</h5>
+
+<p>Char of <strong>string</strong>.</p>
+
+<h5>
+<a id="index" class="anchor" href="#index" aria-hidden="true"><span class="octicon octicon-link"></span></a>index</h5>
+
+<p>Index of <strong>value</strong> in <strong>string</strong>.</p>
+
+<h4>
+<a id="example-9" class="anchor" href="#example-9" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.forEach('FooBar', function(value, index){
+    console.log(value, index);
+});
+//outputs:
+F 0
+o 1
+o 2
+B 3
+a 4
+r 5
+</code></pre>
+
+<h3>
+<a id="isalphastring" class="anchor" href="#isalphastring" aria-hidden="true"><span class="octicon octicon-link"></span></a>isAlpha(string)</h3>
+
+<p>Checks if the source string contains only letters. </p>
+
+<h4>
+<a id="string-10" class="anchor" href="#string-10" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="return-9" class="anchor" href="#return-9" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>Boolean is the source string contains only letters.</p>
+
+<h4>
+<a id="example-10" class="anchor" href="#example-10" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.isAlpha('Foo &lt;Bar&gt;&lt;Buzz&gt;');
+//return: false
+jstring.isAlpha('Foo BarBuzz');
+//return: true
+</code></pre>
+
+<h3>
+<a id="isalphanumericstring" class="anchor" href="#isalphanumericstring" aria-hidden="true"><span class="octicon octicon-link"></span></a>isAlphanumeric(string)</h3>
+
+<p>Checks if the source string contains only letters and numbers.</p>
+
+<h4>
+<a id="string-11" class="anchor" href="#string-11" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="return-10" class="anchor" href="#return-10" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>Boolean is the source string contains only letters and numbers.</p>
+
+<h4>
+<a id="example-11" class="anchor" href="#example-11" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
 <pre><code>jstring.isAlphanumeric('Foo &lt;Bar&gt;&lt;Buzz&gt; 67');
-//returns: false
+//return: false
 jstring.isAlphanumeric('Foo BarBuzz 67');
-//returns: true
+//return: true
+</code></pre>
+
+<h3>
+<a id="isemailstring" class="anchor" href="#isemailstring" aria-hidden="true"><span class="octicon octicon-link"></span></a>isEmail(string)</h3>
+
+<p>Checks if the source string is a valid email.</p>
+
+<h4>
+<a id="string-12" class="anchor" href="#string-12" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="return-11" class="anchor" href="#return-11" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>Boolean is the source string is a valid email.</p>
+
+<h4>
+<a id="example-12" class="anchor" href="#example-12" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.isEmail('test@method.io');
+//return: true
+jstring.isEmail('Foo Bar');
+//return: false
+</code></pre>
+
+<h3>
+<a id="isupperstring-strict" class="anchor" href="#isupperstring-strict" aria-hidden="true"><span class="octicon octicon-link"></span></a>isUpper(string, strict)</h3>
+
+<p>Checks if the source string is uppercase.</p>
+
+<h4>
+<a id="string-13" class="anchor" href="#string-13" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="strict" class="anchor" href="#strict" aria-hidden="true"><span class="octicon octicon-link"></span></a>strict</h4>
+
+<p>Set to true if test should be strict (return true only if all chars of string is uppercase).</p>
+
+<h4>
+<a id="return-12" class="anchor" href="#return-12" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>Boolean is the source string is uppercase.</p>
+
+<h4>
+<a id="example-13" class="anchor" href="#example-13" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.isUpper('Foo Bar');
+//return: true
+jstring.isUpper('foo bar');
+//return: false
+jstring.isUpper('Foo Bar', true);
+//return: false
+</code></pre>
+
+<h3>
+<a id="islowerstring-strict" class="anchor" href="#islowerstring-strict" aria-hidden="true"><span class="octicon octicon-link"></span></a>isLower(string, strict)</h3>
+
+<p>Checks if the source string is lowercase.</p>
+
+<h4>
+<a id="string-14" class="anchor" href="#string-14" aria-hidden="true"><span class="octicon octicon-link"></span></a>string</h4>
+
+<p>Source string.</p>
+
+<h4>
+<a id="strict-1" class="anchor" href="#strict-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>strict</h4>
+
+<p>Set to true if test should be strict (return true only if all chars of string is lowercase).</p>
+
+<h4>
+<a id="return-13" class="anchor" href="#return-13" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>Boolean is the source string is lowercase.</p>
+
+<h4>
+<a id="example-14" class="anchor" href="#example-14" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>jstring.isLower('Foo Bar');
+//return: true
+jstring.isLower('FOO BAR');
+//return: false
+jstring.isLower('Foo Bar', true);
+//return: false    
 </code></pre>
 
       <footer class="site-footer">
