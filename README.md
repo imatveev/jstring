@@ -136,6 +136,28 @@ String processed.
     jstring.replace('Foo Bar foo', ['foo', 'buzz', true]);
     //return: Foo Bar buzz
     
+### forEach(string[, callback])
+Iterate thru every char of incoming string and call the callback function to it.
+#### string
+Source string.
+#### callback(value, index)
+Callback function, that will be called to each char of **string**.
+##### value
+Char of **string**.
+##### index
+Index of **value** in **string**.
+#### Example
+    jstring.forEach('FooBar', function(value, index){
+        console.log(value, index);
+    });
+    //outputs:
+    F 0
+    o 1
+    o 2
+    B 3
+    a 4
+    r 5
+    
 ### isAlpha(string)
 Checks if the source string contains only letters. 
 #### string
