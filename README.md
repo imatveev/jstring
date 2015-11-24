@@ -7,11 +7,11 @@ A Node.js library, designed to simplify work with string validation and sanitiza
 You need deal with string validation or sanitization in your Node.js project.
 ## Installation
     var jstring = require('jstring');
-    
+
 ## Usage
 
 ### handleString(string, task)
-Main sanitization method, that takes string and task object, and return string after processing. 
+Main sanitization method, that takes string and task object, and return string after processing.
 (All jstring methods have public access, and You can use them direct. This method is developed for convenience).
 #### string
 Source string.
@@ -25,31 +25,31 @@ Can be used with:
 #### return
 String processed.
 #### Example
-    jstring.handleString('Foo <Bar>Buzz', { cut: 6, 
-                                            removeTags:null, 
+    jstring.handleString('Foo <Bar>Buzz', { cut: 6,
+                                            removeTags:null,
                                             replace: ['Fo', 'FO', true]
                                           });
     //return: FOo Bu
-    
+
 ### removeTags(string[, except])
-Removes all <*> and \&lt;*\&gt; elements of the string. 
+Removes all <*> and \&lt;*\&gt; elements of the string.
 #### string
 Source string.
 #### except
-A string, or array, that contains exclusion tag names. 
+A string, or array, that contains exclusion tag names.
 (Notice that closing tags is added automatically. For example if you pass 'div' as except - tag &lt;/div&gt; will not be deleted.)
 #### return
 String processed.
 #### Example
     jstring.removeTags('Foo <Bar><Buzz>');
-    //return: Foo 
+    //return: Foo
     jstring.removeTags('Foo <Bar><Buzz>', Bar);
     //return: Foo <Bar>
     jstring.removeTags('Foo &lt;Bar&gt;<Buzz>', Bar);
-    //return: Foo 
-    
+    //return: Foo
+
 ### cut(string, length)
-Cuts the string from start to **length**. 
+Cuts the string from start to **length**.
 #### string
 Source string.
 #### length
@@ -61,7 +61,7 @@ String processed.
     //return: Foo <Bar>
 
 ### toLow(string)
-Just a wrapper over *toLowerCase* method, to allow use it in **handleString** method. 
+Just a wrapper over *toLowerCase* method, to allow use it in **handleString** method.
 #### string
 Source string.
 #### return
@@ -71,7 +71,7 @@ String processed.
     //return: foo bar
 
 ### toUp(string)
-Just a wrapper over *toUpperCase* method, to allow use it in **handleString** method. 
+Just a wrapper over *toUpperCase* method, to allow use it in **handleString** method.
 #### string
 Source string.
 #### return
@@ -81,7 +81,7 @@ String processed.
     //return: FOO BAR
 
 ### capitalize(string)
-Makes first character of the string capitalized. 
+Makes first character of the string capitalized.
 #### string
 Source string.
 #### return
@@ -89,9 +89,9 @@ String processed.
 #### Example
     jstring.capitalize('foo Bar');
     //return: Foo Bar
-    
+
 ### minifyWhitespace(string)
-Removes extra whitespace. 
+Removes extra whitespace.
 #### string
 Source string.
 #### return
@@ -135,9 +135,51 @@ String processed.
     //return: buzz Bar buzz
     jstring.replace('Foo Bar foo', ['foo', 'buzz', true]);
     //return: Foo Bar buzz
-    
+
+### left(string, length)
+Returns left part of string with **length**.
+#### string
+Source string.
+#### length
+Length of string, that need to be cut from start.
+#### return
+String processed.
+#### Example
+    jstring.left('Foo Bar foo', 3);
+    //return: Foo
+    jstring.left('Foo Bar foo', 5);
+    //return: Foo B
+
+### right(string, length)
+Returns right part of string with **length**.
+#### string
+Source string.
+#### length
+Length of string, that need to be cut to end.
+#### return
+String processed.
+#### Example
+    jstring.right('Foo Bar foo', 3);
+    //return: foo
+    jstring.right('Foo Bar foo', 5);
+    //return: r foo  
+
+### repeat(string, n)
+Returns the string, repeated **n** times.
+#### string
+Source string.
+#### n
+Count of repeat times.
+#### return
+String processed.
+#### Example
+    jstring.repeat('Foo', 3);
+    //return: FooFooFoo
+    jstring.repeat('Foo Bar', 2);
+    //return: Foo BarFoo Bar
+
 ### forEach(string[, callback])
-Iterate thru every char of incoming string and call the callback function to it.
+Iterate through every char of incoming string and call the callback function to it.
 #### string
 Source string.
 #### callback(value, index)
@@ -157,9 +199,9 @@ Index of **value** in **string**.
     B 3
     a 4
     r 5
-    
+
 ### isAlpha(string)
-Checks if the source string contains only letters. 
+Checks if the source string contains only letters.
 #### string
 Source string.
 #### return
@@ -169,7 +211,7 @@ Boolean is the source string contains only letters.
     //return: false
     jstring.isAlpha('Foo BarBuzz');
     //return: true
-        
+
 ### isAlphanumeric(string)
 Checks if the source string contains only letters and numbers.
 #### string
@@ -181,7 +223,7 @@ Boolean is the source string contains only letters and numbers.
     //return: false
     jstring.isAlphanumeric('Foo BarBuzz 67');
     //return: true
-    
+
 ### isEmail(string)
 Checks if the source string is a valid email.
 #### string
@@ -209,7 +251,7 @@ Boolean is the source string is uppercase.
     //return: false
     jstring.isUpper('Foo Bar', true);
     //return: false
-    
+
 ### isLower(string, strict)
 Checks if the source string is lowercase.
 #### string
@@ -225,11 +267,3 @@ Boolean is the source string is lowercase.
     //return: false
     jstring.isLower('Foo Bar', true);
     //return: false    
-        
-
-      
-        
-    
-        
-    
-   
