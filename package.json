@@ -1,6 +1,6 @@
 {
   "name": "jstring",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A Node.js library, designed to simplify work with string validation and sanitization.",
   "main": "index.js",
   "scripts": {
