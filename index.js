@@ -33,7 +33,7 @@ let numberChecker = number => {
 const jstring = {
     removeTags(string, except) {
         stringChecker(string);
-        if (!Array.isArray(except)) {
+        if (except && !Array.isArray(except)) {
             throw new TypeError(`Except parameter must be an array`);
         }
         if (except) {
